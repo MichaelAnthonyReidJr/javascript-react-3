@@ -27,6 +27,15 @@ export const orderedDrinks = atom({
         milk: 0
     }
 })
+export const orderedFood = atom({
+    key: 'orderedFood',
+    default: {
+        pastry: 0,
+        croissant: 0,
+        Bagel: 0,
+        Parfait: 0
+    }    
+})
 
 //
 // Component access: 

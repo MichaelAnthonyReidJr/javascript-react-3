@@ -1,0 +1,26 @@
+@use 'shared-style.scss' as ss;
+
+    .FoodTableRow {
+    // Disable user select.
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+    .FoodTableRow_Button {
+        width: 55px;
+        height: 45px;
+        border: none;
+        margin-left: 5px;
+        border-radius: 2px;
+        color: rgb(213, 213, 213);
+        background-color: ss.$main-color-5;
+    }
+    .FoodTableRow_OrderAmount {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+}

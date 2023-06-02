@@ -10,9 +10,10 @@
 //
 
 import { getPriceForDrink } from './App.Config'
-
+import { getPriceForFood } from './App.Config'
 /**
- * @param {*} drinks 
+ * @param {*} drinks
+ * @param {*} food 
  * @returns An array of objects that the customer has ordered.
  *  [
       { 
@@ -23,14 +24,21 @@ import { getPriceForDrink } from './App.Config'
       }
     ] 
  */
-export const buildOrder = (drinks) => {
+export const buildOrder = (drinks, food) => {
     let total = 0
     let arrayOfDrinks = Object.keys(drinks)
+    let arrayOfFood = Object.keys(food)
 
     const arrayOfDrinkObjects = arrayOfDrinks.map(i => {
         return {
             item: i,
             qty: drinks[i]
+        }
+    })
+    const arrayOfFoodObjects = arrayOfFood.map(i => {
+        return {
+            item: i,
+            qty: food[i]
         }
     })
 
@@ -42,11 +50,21 @@ export const buildOrder = (drinks) => {
             subTotal: i.qty * getPriceForDrink(i.item)
         }
     })
+    const allFoodItems = arrayOfFoodObjects.map(i => {
+        total += i.qty * getPriceForFood(i.item)
+        return {
+            ...i,
+            price: getPriceForFood(i.item),
+            subTotal: i.qty * getPriceForFood(i.item)
+        }
+    })
 
     const order = allItems.filter(i => i.qty > 0)
+    const order1 = allFoodItems.filter(i=> i.qty > 0)
 
     return {
         order,
+        order1,
         total
     }
 }
@@ -61,6 +79,7 @@ export const calcTotalForAllOrders = (orders) => {
 
 /**
  * @param {} drinks 
+ * @param {} food
  * @returns The total number of drinks the customer has ordered.
  */
 export const getTotalNumberDrinks = (drinks) => {
@@ -70,4 +89,12 @@ export const getTotalNumberDrinks = (drinks) => {
         totalDrinks += drinks[i]
     })
     return totalDrinks
+}
+export const getTotalNumberFood = (food) => {
+    let totalFood = 0
+    const arrayOfFood = Object.keys(food)
+    arrayOfFood.forEach(i => {
+        totalFood += food[i]
+    })
+    return totalFood
 }
