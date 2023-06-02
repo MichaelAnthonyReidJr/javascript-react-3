@@ -1,0 +1,19 @@
+@use 'shared-style.scss' as ss;
+
+.FoodTable {
+    .FoodTable_Table {
+      
+        margin: 10px;
+        width: 400px;
+        min-width: 310px;
+        background-color: ss.$main-color-4;
+        tr {
+            
+            border: 1px solid rgb(212, 195, 195);
+            td {
+                font-size: 110%;
+                padding: 7px;
+            }
+        }
+    }
+}
